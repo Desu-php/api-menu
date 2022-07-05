@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('menu_id')->constrained()->onDelete('cascade');
-            $table->string('title');
+            $table->string('name');
             $table->boolean('vision')->default(true);
             $table->string('image')->nullable();
             $table->integer('order');

@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth', 'controller' => 'LoginController'], function (){
     Route::post('login', 'login');
-    Route::post('logout', 'logout')->middleware('auth:sanctum');
+
+    Route::group(['middleware' => ['auth:sanctum']], function (){
+        Route::post('logout', 'logout');
+        Route::get('me', 'me');
+    });
 });
 
 Route::middleware('auth:sanctum')->prefix('admin')->group(function (){

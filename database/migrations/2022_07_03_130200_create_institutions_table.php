@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('slug')->unique();
-            $table->string('title');
+            $table->string('name');
             $table->string('design')->default('#fd6f3f');
             $table->string('color')->default('#ffffff');
             $table->foreignId('currency_id')->constrained();
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->foreignId('country_id')->constrained();
             $table->string('city')->nullable();
             $table->string('address')->nullable();
-            $table->timestamp('expiration_date');
+            $table->integer('limit')->default(1);
             $table->timestamps();
         });
     }

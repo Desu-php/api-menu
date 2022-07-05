@@ -18,7 +18,7 @@ class LoginController extends Controller
         ]);
 
         if (!Auth::attempt($data)) {
-            return $this->error('Credentials not match', 401);
+            return $this->error('Учетные данные не совпадают', 401);
         }
 
         return $this->success([
@@ -35,6 +35,6 @@ class LoginController extends Controller
 
     public function me()
     {
-        auth()->user()->load('roles');
+        return auth()->user()->load('roles');
     }
 }

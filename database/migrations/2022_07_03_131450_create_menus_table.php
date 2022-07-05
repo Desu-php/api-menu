@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->foreignId('institution_id')->constrained()->onDelete('cascade');
-            $table->string('title');
+            $table->string('name');
             $table->boolean('vision')->default(true);
             $table->integer('order');
+            $table->timestamp('expired_at')->nullable();
             $table->timestamps();
         });
     }
