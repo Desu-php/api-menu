@@ -13,7 +13,7 @@ class InstitutionController extends Controller
 
     public function index()
     {
-        $institutions = Institution::with('user', 'categories', 'country', 'city')
+        $institutions = Institution::with('user', 'categories', 'country', 'city', 'currency')
             ->latest()
             ->paginate(30);
 
