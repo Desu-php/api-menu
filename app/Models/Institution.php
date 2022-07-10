@@ -63,4 +63,9 @@ class Institution extends Model
     {
         return $this->morphToMany(Language::class, 'languageable');
     }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
 }
