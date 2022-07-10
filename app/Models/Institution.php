@@ -11,7 +11,8 @@ class Institution extends Model
 
     protected $fillable = [
         'user_id',
-        'title',
+        'city_id',
+        'name',
         'slug',
         'design',
         'color',
@@ -21,10 +22,7 @@ class Institution extends Model
         'background_image',
         'wifi_password',
         'country_id',
-        'city',
         'address',
-        'expiration_date',
-        'main_language'
     ];
 
     protected $dates = [
