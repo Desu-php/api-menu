@@ -1,20 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Resources\RoleResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         $users = User::with('roles')
+            ->search()
             ->latest()
             ->paginate();
 
@@ -29,7 +31,7 @@ class UserController extends Controller
             'password' => bcrypt($request->password)
         ])->save();
 
-        $user->syncRoles($request->role_id);
+        $user->syncRoles($request->role);
 
         return new UserResource($user);
     }

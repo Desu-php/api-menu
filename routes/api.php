@@ -23,7 +23,7 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth', 'controller' => 'LoginC
     });
 });
 
-Route::middleware('auth:sanctum')->prefix('admin')->group(function (){
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth:sanctum']],function (){
     Route::apiResources([
         'users' => 'UserController',
         'institutions' => 'InstitutionController',
@@ -31,4 +31,8 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function (){
         'categories' => 'CategoryController',
         'meals' => 'MealController',
     ]);
+
+    Route::controller('RoleController')->group(function (){
+        Route::get('roles', 'getRoles');
+    });
 });

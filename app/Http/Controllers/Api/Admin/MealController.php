@@ -1,22 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\InsitutionResource;
-use App\Models\Institution;
 use Illuminate\Http\Request;
 
-class InstitutionController extends Controller
+class MealController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $institutions = Institution::with('user', 'categories')
-            ->latest()
-            ->paginate(30);
-
-        return InsitutionResource::collection($institutions);
+        //
     }
 
     /**
@@ -36,7 +34,7 @@ class InstitutionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Institution $institution)
+    public function show($id)
     {
         //
     }

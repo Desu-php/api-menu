@@ -31,7 +31,7 @@ class UserStoreRequest extends FormRequest
             'name' => 'required|min:2|max:64',
             'email' => ['required', 'unique:users'.$email, 'email'],
             'password' => $password.'|confirmed|min:9',
-            'role_id' => ['required', 'integer'],
+            'role' => ['required', 'integer', 'exists:roles,id'],
         ];
     }
 }
