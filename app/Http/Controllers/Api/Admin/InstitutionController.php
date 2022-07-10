@@ -43,7 +43,7 @@ class InstitutionController extends Controller
 
         $institution = Institution::updateOrCreate([
             'id' => $request->id
-        ], [...$request->validated(), 'currency_id' => Currency::firstWhere('name', 'Сомони')->id]);
+        ], [...$data, 'currency_id' => Currency::firstWhere('name', 'Сомони')->id]);
 
         return new InsitutionResource($institution);
     }
