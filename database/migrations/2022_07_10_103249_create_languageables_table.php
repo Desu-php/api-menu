@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('languageables', function (Blueprint $table) {
             $table->id();
-            $table->json('name');
-            $table->string('short_name');
-            $table->foreignId('city_id')->constrained();
+            $table->foreignId('language_id')->constrained();
+            $table->boolean('main_language')->default(false);
+            $table->bigInteger('languageable_id');
+            $table->string('languageable_type');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('languageables');
     }
 };

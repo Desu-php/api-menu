@@ -5,19 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Access extends Model
+class Languageable extends Model
 {
     use HasFactory;
 
     protected $fillable =
         [
-            'user_id',
-            'limit',
-            'duration'
+            'language_id',
+            'main_language',
+            'languageable_id',
+            'languageable_type',
         ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+
 }

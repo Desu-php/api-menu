@@ -60,4 +60,9 @@ class Institution extends Model
     {
         return $this->hasManyThrough(Category::class, Menu::class);
     }
+
+    public function languages()
+    {
+        return $this->morphToMany(Language::class, 'languageable');
+    }
 }

@@ -17,8 +17,7 @@ class CountrySeeder extends Seeder
     public function run()
     {
         SeederHelper::firstOrCreate(Country::class,[
-            ['name' => 'Точикистон', 'short_name' => 'TJ'],
-            ['name' => 'Россия', 'short_name' => 'RU'],
+            ['name' => ['ru' => 'Таджикистан'], 'short_name' => 'TJ', 'city_id' => 1],
         ]);
     }
 }

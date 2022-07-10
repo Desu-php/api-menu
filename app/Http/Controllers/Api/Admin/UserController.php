@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Resources\RoleResource;
 use App\Http\Resources\UserResource;
+use App\Models\Access;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -15,7 +16,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = User::with('roles')
+        $users = User::with('roles', 'access')
             ->lists()
             ->paginate();
 
@@ -33,6 +34,13 @@ class UserController extends Controller
         $user = User::updateOrCreate([
             'id' => $request->id
         ], $data);
+
+        $user->roles[0]->name === User::CUSTOMER
+        && Access::updateOrCreate([
+            'user_id' => $user->id,
+            'limit' => $request->limit,
+            'duration' => $request->duration,
+        ]);
 
         $user->syncRoles($request->role);
 

@@ -3,11 +3,11 @@
 namespace Database\Seeders;
 
 use App\Helpers\SeederHelper;
-use App\Models\Currency;
+use App\Models\City;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CurrencySeeder extends Seeder
+class CitySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,8 +16,8 @@ class CurrencySeeder extends Seeder
      */
     public function run()
     {
-        SeederHelper::firstOrCreate(Currency::class, [
-            ['name' => ['ru' => 'Сомони'], 'short_code' => 'smn'],
+        SeederHelper::firstOrCreate(City::class,[
+            ['name' => ['ru' => 'Худжанд']],
         ]);
     }
 }

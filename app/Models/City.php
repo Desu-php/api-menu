@@ -6,20 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class Country extends Model
+class City extends Model
 {
     use HasFactory, HasTranslations;
 
-    protected $fillable = [
-        'city_id',
-        'name',
-        'short_name'
-    ];
+    protected $fillable = ['name'];
 
     public $translatable = ['name'];
 
-    public function city()
+    public function country()
     {
-        return $this->belongsTo(City::class);
+        return $this->hasOne(Country::class);
     }
 }
