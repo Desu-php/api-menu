@@ -15,8 +15,6 @@ class AccessResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'user_id' => $this->user_id,
             'limit' => $this->limit,
             'duration' => $this->duration,
         ];
