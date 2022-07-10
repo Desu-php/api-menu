@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('accesses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('menu_id')->constrained()->onDelete('cascade');
-            $table->json('name');
-            $table->boolean('vision')->default(true);
-            $table->string('image')->nullable();
-            $table->integer('order');
+            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->integer('limit');
+            $table->integer('duration');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('accesses');
     }
 };

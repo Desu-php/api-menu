@@ -16,20 +16,23 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::with('roles')
-            ->search()
-            ->latest()
+            ->lists()
             ->paginate();
 
         return UserResource::collection($users);
     }
 
-    public function store(UserStoreRequest $request, User $user)
+    public function store(UserStoreRequest $request)
     {
-        $user->fill([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password)
-        ])->save();
+        $data = $request->validated();
+
+        if (!empty($request->password)) {
+            $data['password'] = bcrypt($request->password);
+        }
+
+        $user = User::updateOrCreate([
+            'id' => $request->id
+        ], $data);
 
         $user->syncRoles($request->role);
 
@@ -40,12 +43,7 @@ class UserController extends Controller
     {
         $user->load('roles');
 
-        $roles = Role::all();
-
-        return [
-            'user' => new UserResource($user),
-            'roles' => RoleResource::collection($roles),
-        ];
+        return new UserResource($user);
     }
 
     public function destroy(User $user)

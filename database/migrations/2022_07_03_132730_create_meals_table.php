@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('meals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->float('price');
-            $table->float('old_price')->nullable();
+            $table->json('name');
+            $table->json('description')->nullable();
+            $table->decimal('price');
+            $table->decimal('old_price')->nullable();
             $table->string('weight')->nullable();
             $table->integer('order');
             $table->boolean('vision')->default(true);

@@ -23,14 +23,13 @@ class UserStoreRequest extends FormRequest
      */
     public function rules()
     {
-        $isUpdate = !empty($this->route()->parameter('user'));
+        $isUpdate = !empty($this->id);
         $password = $isUpdate ? 'nullable' : 'required';
-        $email = $isUpdate ? ',id' : '';
-
+        $email = $isUpdate ? ',id,'.$this->id : '';
         return [
             'name' => 'required|min:2|max:64',
             'email' => ['required', 'unique:users'.$email, 'email'],
-            'password' => $password.'|confirmed|min:9',
+            'password' => $password.'|confirmed|min:6',
             'role' => ['required', 'integer', 'exists:roles,id'],
         ];
     }
