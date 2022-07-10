@@ -36,8 +36,10 @@ class UserController extends Controller
         ], $data);
 
         $user->roles[0]->name === User::CUSTOMER
+
         && Access::updateOrCreate([
-            'user_id' => $user->id,
+            'user_id' => auth()->id(),
+        ], [
             'limit' => $request->limit,
             'duration' => $request->duration,
         ]);
