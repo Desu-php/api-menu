@@ -19,7 +19,8 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'roles' => RoleResource::collection($this->whenLoaded('roles')),
-            'access' => new AccessResource($this->whenLoaded('access')),
+            'limit' => $this->access?->limit,
+            'duration' => $this->access?->duration,
             'role' => $this->whenLoaded('roles', fn() => $this->roles->first()?->id)
         ];
     }
