@@ -31,15 +31,12 @@ class InstitutionRequest extends FormRequest
             'slug' => ['required', 'unqiue', Rule::unique('institutions')->ignore($this->id)],
             'design' => ['required'],
             'color' => ['required'],
-            'currency_id' => ['required', 'integer'],
+            'currency_id' => ['nullable', 'integer'],
             'phone' => ['nullable'],
             'logo' => ['nullable', 'image', 'mimes:jpeg,bmp,png,jpg', 'max:1000'],
             'background_image' => ['nullable', 'image', 'mimes:jpeg,bmp,png,jpg', 'max:1000'],
             'wifi_password' => ['nullable'],
-            'country_id' => ['integer', 'required'],
             'address' => ['nullable']
-
-
         ];
     }
 }
