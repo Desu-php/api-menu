@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InstitutionRequest;
 use App\Http\Resources\InsitutionResource;
-use App\Models\City;
 use App\Models\Institution;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class InstitutionController extends Controller
@@ -16,8 +14,8 @@ class InstitutionController extends Controller
     public function index()
     {
         $institutions = Institution::with('user', 'categories', 'country', 'city', 'currency')
-            ->lists()
-            ->paginate();
+            ->latest()
+            ->paginate(30);
 
         return InsitutionResource::collection($institutions);
     }
@@ -25,6 +23,13 @@ class InstitutionController extends Controller
     public function store(InstitutionRequest $request)
     {
         $data = $request->validated();
+
+        if (!$request->hasFile('logo') && $request->id){
+            unset($data['logo']);
+        }
+        if (!$request->hasFile('background_image') && $request->id){
+            unset($data['background_image']);
+        }
 
         if (auth()->user()->hasRole(User::CUSTOMER) && empty($request->id)){
            abort_if( auth()->user()->access->limit == auth()->user()->menus()->count(), 403, 'Вы исчерпали лимит.');
