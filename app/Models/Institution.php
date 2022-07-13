@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Eloquent\HasSearch;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Institution extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSearch;
 
     protected $fillable = [
         'user_id',
@@ -23,10 +24,6 @@ class Institution extends Model
         'wifi_password',
         'country_id',
         'address',
-    ];
-
-    protected $dates = [
-        'expiration_date'
     ];
 
     public function user()

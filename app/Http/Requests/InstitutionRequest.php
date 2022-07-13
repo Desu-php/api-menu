@@ -25,18 +25,18 @@ class InstitutionRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => ['required', 'integer'],
-            'city_id' => ['nullable', 'integer'],
+            'user_id' => ['nullable', 'integer', 'users:exists,id'],
+            'city_id' => ['nullable', 'integer', 'users:cities,id'],
             'name' => ['required'],
-            'slug' => ['required', 'unqiue', Rule::unique('institutions')->ignore($this->id)],
-            'design' => ['required'],
-            'color' => ['required'],
-            'currency_id' => ['required', 'integer'],
+            'slug' => ['required', 'unique', Rule::unique('institutions')->ignore($this->id)],
+            'design' => ['nullable'],
+            'color' => ['nullable'],
+            'currency_id' => ['nullable', 'integer'],
             'phone' => ['nullable'],
             'logo' => ['nullable', 'image', 'mimes:jpeg,bmp,png,jpg', 'max:1000'],
             'background_image' => ['nullable', 'image', 'mimes:jpeg,bmp,png,jpg', 'max:1000'],
             'wifi_password' => ['nullable'],
-            'country_id' => ['integer', 'required'],
+            'country_id' => ['nullable', 'integer', 'countries:exists,id'],
             'address' => ['nullable']
 
 

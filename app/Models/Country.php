@@ -11,15 +11,14 @@ class Country extends Model
     use HasFactory, HasTranslations;
 
     protected $fillable = [
-        'city_id',
         'name',
         'short_name'
     ];
 
     public $translatable = ['name'];
 
-    public function city()
+    public function cities()
     {
-        return $this->belongsTo(City::class);
+        return $this->hasMany(City::class);
     }
 }

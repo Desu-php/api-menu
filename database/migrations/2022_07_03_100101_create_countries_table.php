@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->json('name');
             $table->string('short_name');
-            $table->foreignId('city_id')->constrained();
             $table->timestamps();
         });
     }

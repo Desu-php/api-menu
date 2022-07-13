@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Access::class);
     }
+
+    public function menus()
+    {
+        return $this->hasManyThrough(Menu::class, Institution::class);
+    }
 }

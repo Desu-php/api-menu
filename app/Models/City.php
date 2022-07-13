@@ -10,12 +10,12 @@ class City extends Model
 {
     use HasFactory, HasTranslations;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'country_id'];
 
     public $translatable = ['name'];
 
     public function country()
     {
-        return $this->hasOne(Country::class);
+        return $this->belongsTo(Country::class);
     }
 }

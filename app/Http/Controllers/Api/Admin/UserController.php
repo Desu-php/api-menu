@@ -35,16 +35,16 @@ class UserController extends Controller
             'id' => $request->id
         ], $data);
 
-        $user->roles[0]->name === User::CUSTOMER
-
-        && Access::updateOrCreate([
-            'user_id' => auth()->id(),
-        ], [
-            'limit' => $request->limit,
-            'duration' => $request->duration,
-        ]);
-
         $user->syncRoles($request->role);
+
+        if ($user->hasRole(User::CUSTOMER)) {
+            Access::updateOrCreate([
+                'user_id' => $user->id,
+            ], [
+                'limit' => $request->limit,
+                'duration' => $request->duration,
+            ]);
+        }
 
         return new UserResource($user);
     }

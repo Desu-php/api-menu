@@ -21,12 +21,12 @@ return new class extends Migration
             $table->json('name');
             $table->string('design')->default('#fd6f3f');
             $table->string('color')->default('#ffffff');
-            $table->foreignId('currency_id')->constrained();
+            $table->foreignId('currency_id')->nullable()->constrained();
             $table->string('phone')->nullable();
             $table->string('logo')->nullable();
             $table->string('background_image')->nullable();
             $table->string('wifi_password')->nullable();
-            $table->foreignId('country_id')->constrained();
+            $table->foreignId('country_id')->nullable()->constrained();
             $table->string('address')->nullable();
             $table->timestamps();
         });
