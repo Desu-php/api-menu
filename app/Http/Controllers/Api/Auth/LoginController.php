@@ -35,6 +35,8 @@ class LoginController extends Controller
 
     public function me()
     {
-        return auth()->user()->load('roles');
+        return auth()
+            ->user()
+            ->load('roles', 'languages');
     }
 }

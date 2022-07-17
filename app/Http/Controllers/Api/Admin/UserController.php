@@ -7,6 +7,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Resources\RoleResource;
 use App\Http\Resources\UserResource;
 use App\Models\Access;
+use App\Models\Language;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -38,6 +39,11 @@ class UserController extends Controller
         $user->syncRoles($request->role);
 
         if ($user->hasRole(User::CUSTOMER)) {
+
+            if (!$user->languages()->count()){
+                $user->languages()->attach(Language::firstWhere('key', Language::RU)->id, ['is_main' => true]);
+            }
+
             Access::updateOrCreate([
                 'user_id' => $user->id,
             ], [

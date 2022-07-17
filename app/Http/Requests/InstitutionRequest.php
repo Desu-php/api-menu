@@ -25,10 +25,10 @@ class InstitutionRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => ['nullable', 'integer', 'users:exists,id'],
-            'city_id' => ['nullable', 'integer', 'users:cities,id'],
+            'user_id' => ['nullable', 'integer', 'exists:users,id'],
+            'city_id' => ['nullable', 'integer', 'exists:cities,id'],
             'name' => ['required'],
-            'slug' => ['required', 'unique', Rule::unique('institutions')->ignore($this->id)],
+            'slug' => ['required', Rule::unique('institutions')->ignore($this->id)],
             'design' => ['nullable'],
             'color' => ['nullable'],
             'currency_id' => ['nullable', 'integer'],

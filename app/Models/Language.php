@@ -9,7 +9,15 @@ class Language extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['languages'];
+    const RU = 'ru';
+    CONST EN = 'en';
+
+    protected $fillable = [
+        'name',
+        'key',
+        'code'
+    ];
+
 
     public function institutions()
     {

@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Api\Admin;
+namespace App\Http\Controllers\Api\Admin\Setting;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\Setting\LanguageResource;
 use App\Models\Language;
-use Illuminate\Http\Request;
 
 class LanguageController extends Controller
 {
     //
 
-    public function index()
+    public function getLanguages()
     {
         return LanguageResource::collection(Language::all());
     }

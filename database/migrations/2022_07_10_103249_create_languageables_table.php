@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('languageables', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('language_id')->constrained();
-            $table->boolean('main_language')->default(false);
+            $table->foreignId('language_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->boolean('is_main')->default(false);
             $table->bigInteger('languageable_id');
             $table->string('languageable_type');
             $table->timestamps();

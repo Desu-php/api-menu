@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\InstitutionRequest;
 use App\Http\Resources\InsitutionResource;
 use App\Models\Institution;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class InstitutionController extends Controller
@@ -60,5 +61,10 @@ class InstitutionController extends Controller
         $institution->delete();
 
         return response()->noContent();
+    }
+
+    public function upload(Request $request)
+    {
+        dd($request->all());
     }
 }

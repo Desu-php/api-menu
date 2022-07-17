@@ -12,7 +12,7 @@ class Languageable extends Model
     protected $fillable =
         [
             'language_id',
-            'main_language',
+            'is_main',
             'languageable_id',
             'languageable_type',
         ];

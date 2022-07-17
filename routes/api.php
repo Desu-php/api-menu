@@ -35,4 +35,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::controller('RoleController')->group(function (){
         Route::get('roles', 'getRoles');
     });
+
+    Route::group(['namespace' => 'Setting', 'prefix' => 'settings'], function (){
+        Route::controller('LanguageController')->prefix('languages')->group(function (){
+            Route::get('', 'getLanguages');
+        });
+    });
 });

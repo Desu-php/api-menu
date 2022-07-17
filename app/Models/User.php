@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(Menu::class, Institution::class);
     }
+
+    public function languages()
+    {
+        return $this->morphToMany(Language::class, 'languageable')->withPivot('is_main');
+    }
 }
