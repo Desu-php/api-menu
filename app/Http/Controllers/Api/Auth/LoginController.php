@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Login\MeResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,8 +36,8 @@ class LoginController extends Controller
 
     public function me()
     {
-        return auth()
+        return MeResource::make(auth()
             ->user()
-            ->load('roles', 'languages');
+            ->load('roles', 'languages'));
     }
 }

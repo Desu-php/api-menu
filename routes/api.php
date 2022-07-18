@@ -39,6 +39,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::group(['namespace' => 'Setting', 'prefix' => 'settings'], function (){
         Route::controller('LanguageController')->prefix('languages')->group(function (){
             Route::get('', 'getLanguages');
+            Route::post('', 'store');
+            Route::post('{language}', 'select');
         });
     });
 });
