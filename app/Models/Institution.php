@@ -5,10 +5,13 @@ namespace App\Models;
 use App\Traits\Eloquent\HasSearch;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
 
 class Institution extends Model
 {
-    use HasFactory, HasSearch;
+    use HasFactory, HasSearch, HasTranslations, HasSlug;
 
     protected $fillable = [
         'user_id',
@@ -25,6 +28,18 @@ class Institution extends Model
         'country_id',
         'address',
     ];
+
+    public $translatable = ['name'];
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
 
     public function user()
     {

@@ -20,7 +20,8 @@ class MeResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'roles' => $this->roles,
-            'languages' => $this->when(!empty($this->languages), fn() => LanguageStoreResource::collection($this->languages))
+            'languages' => $this->when(!empty($this->languages), fn() => LanguageStoreResource::collection($this->languages)),
+            'limit' => $this->access->limit ?? null
         ];
     }
 }

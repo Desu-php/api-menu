@@ -38,6 +38,6 @@ class LoginController extends Controller
     {
         return MeResource::make(auth()
             ->user()
-            ->load('roles', 'languages'));
+            ->load('roles', 'languages', 'access'));
     }
 }

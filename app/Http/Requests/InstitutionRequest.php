@@ -24,22 +24,20 @@ class InstitutionRequest extends FormRequest
      */
     public function rules()
     {
+        $logo = [];
+
+        if (empty($this->id)){
+            $logo = ['image', 'mimes:jpeg,bmp,png,jpg', 'max:1000'];
+        }
+
         return [
             'user_id' => ['nullable', 'integer', 'exists:users,id'],
-            'city_id' => ['nullable', 'integer', 'exists:cities,id'],
             'name' => ['required'],
             'slug' => ['required', Rule::unique('institutions')->ignore($this->id)],
-            'design' => ['nullable'],
-            'color' => ['nullable'],
             'currency_id' => ['nullable', 'integer'],
             'phone' => ['nullable'],
-            'logo' => ['nullable', 'image', 'mimes:jpeg,bmp,png,jpg', 'max:1000'],
-            'background_image' => ['nullable', 'image', 'mimes:jpeg,bmp,png,jpg', 'max:1000'],
+            'logo' => ['nullable'] + $logo,
             'wifi_password' => ['nullable'],
-            'country_id' => ['nullable', 'integer', 'countries:exists,id'],
-            'address' => ['nullable']
-
-
         ];
     }
 }

@@ -18,17 +18,18 @@ class InsitutionResource extends JsonResource
             'id' => $this->id,
             'user_id' => $this->user_id,
             'city' => new CityResource($this->whenLoaded('city')),
-            'name' => $this->name,
+            'name' => $this->getTranslations('name'),
             'slug' => $this->slug,
             'design' => $this->design,
             'color' => $this->color_id,
             'currency' => new CurrencyResource($this->whenLoaded('currency')),
             'phone' => $this->phone,
-            'logo' => $this->logo,
+            'logo' => $this->logo ? asset($this->logo) : null,
             'background_image' => $this->background_image,
             'wifi_password' => $this->wifi_password,
             'country' => new CountryResource($this->whenLoaded('country')),
             'address' => $this->address,
+            'user' => new UserResource($this->whenLoaded('user'))
         ];
     }
 }
