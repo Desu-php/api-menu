@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Admin\Menu;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Collection;
 
 class MenuResource extends JsonResource
 {
@@ -17,10 +16,9 @@ class MenuResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'institution' => new Collection($this->whenLoaded('institution')),
-            'title' => $this->title,
-            'vision' => $this->vision,
-            'order' => $this->order,
+            'name' => $this->getTranslations('name'),
+            'image' => $this->image ? asset($this->image) : null,
+            'published' => $this->published,
         ];
     }
 }

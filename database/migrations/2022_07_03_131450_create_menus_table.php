@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('institution_id')->constrained()->onDelete('cascade');
             $table->json('name');
-            $table->boolean('vision')->default(true);
-            $table->integer('order');
+            $table->string('slug');
+            $table->string('image')->nullable();
+            $table->boolean('published')->default(false);
             $table->timestamp('expired_at')->nullable();
             $table->timestamps();
         });

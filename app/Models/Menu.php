@@ -4,17 +4,36 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
 
 class Menu extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug, HasTranslations;
 
     protected $fillable = [
         'institution_id',
-        'title',
-        'vision',
-        'order'
+        'name',
+        'image',
+        'published',
+        'expired_at'
     ];
+
+    public $translatable = ['name'];
+
+    protected $dates = ['expired_at'];
+
+    protected $casts = [
+        'published' => 'boolean',
+    ];
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
 
     public function institution()
     {

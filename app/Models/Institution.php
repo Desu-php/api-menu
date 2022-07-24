@@ -58,7 +58,7 @@ class Institution extends Model
 
     public function menus()
     {
-        return $this->hasMany(Menu::class)->orderBy('setting');
+        return $this->hasMany(Menu::class);
     }
 
     public function getRouteKeyName()

@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function menus()
     {
-        return $this->hasManyThrough(Menu::class, Institution::class);
+        return $this->hasManyThrough(Menu::class, Institution::class, 'user_id', 'institution_id', 'id', 'id');
     }
 
     public function institutions()
